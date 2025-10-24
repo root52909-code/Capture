@@ -30,12 +30,12 @@
     body {
       background: var(--gradient-bg);
       color: var(--light);
-      line-height: 1.5;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 15px;
+      padding: 0;
       position: relative;
       overflow-x: hidden;
     }
@@ -56,23 +56,23 @@
     
     .container {
       width: 100%;
-      max-width: 850px;
+      max-width: 1100px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       color: var(--dark);
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       position: relative;
-      margin: 10px;
+      margin: 30px;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
-    /* Encabezado compacto */
+    /* Encabezado mejorado */
     .header {
       background: var(--gradient);
       color: white;
-      padding: 25px 20px;
+      padding: 50px 40px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -91,34 +91,34 @@
     }
     
     .logo {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      gap: 15px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
     
     h1 {
-      font-size: 1.9rem;
+      font-size: 2.8rem;
       font-weight: 800;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin-bottom: 15px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
     
     .tagline {
-      font-size: 1rem;
+      font-size: 1.4rem;
       opacity: 0.95;
-      max-width: 550px;
+      max-width: 700px;
       margin: 0 auto;
       font-weight: 500;
-      line-height: 1.3;
+      line-height: 1.5;
     }
     
-    /* Área de la cámara compacta */
+    /* Área de la cámara mejorada */
     .camera-container {
-      padding: 25px 20px;
+      padding: 50px 40px;
       text-align: center;
       position: relative;
       background: var(--gradient-light);
@@ -126,35 +126,37 @@
     
     .camera-frame {
       width: 100%;
-      max-width: 400px;
+      max-width: 550px;
       margin: 0 auto;
-      border-radius: 14px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
       position: relative;
-      border: 3px solid var(--accent);
-      transform: perspective(800px) rotateX(5deg);
-      transition: transform 0.4s, box-shadow 0.4s;
+      border: 4px solid var(--accent);
+      transform: perspective(1000px) rotateX(5deg);
+      transition: transform 0.5s, box-shadow 0.5s;
     }
     
     .camera-frame:hover {
-      transform: perspective(800px) rotateX(0deg);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+      transform: perspective(1000px) rotateX(0deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
     
     #videoVisible {
       width: 100%;
       display: block;
       background: #f0f0f0;
-      min-height: 280px;
+      min-height: 400px;
       object-fit: cover;
     }
     
     .camera-controls {
-      margin-top: 18px;
+      margin-top: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
     }
     
     .capture-btn-large {
@@ -162,11 +164,11 @@
       color: white;
       border: none;
       border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      font-size: 1.6rem;
+      width: 100px;
+      height: 100px;
+      font-size: 2.2rem;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       transition: all 0.3s;
       display: flex;
       justify-content: center;
@@ -176,8 +178,8 @@
     }
     
     .capture-btn-large:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transform: scale(1.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
     
     .capture-btn-large:active {
@@ -190,7 +192,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 2px solid white;
+      border: 3px solid white;
       animation: pulse 2s infinite;
     }
     
@@ -200,22 +202,22 @@
         opacity: 1;
       }
       100% {
-        transform: scale(1.3);
+        transform: scale(1.5);
         opacity: 0;
       }
     }
     
-    /* Instrucciones compactas */
+    /* Instrucciones mejoradas */
     .instructions {
-      padding: 30px 20px;
+      padding: 50px 40px;
       text-align: center;
       background: white;
     }
     
     .instructions h2 {
       color: var(--secondary);
-      margin-bottom: 20px;
-      font-size: 1.6rem;
+      margin-bottom: 40px;
+      font-size: 2.3rem;
       font-weight: 700;
       position: relative;
       display: inline-block;
@@ -224,38 +226,38 @@
     .instructions h2::after {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 70px;
-      height: 3px;
+      width: 100px;
+      height: 5px;
       background: var(--gradient);
-      border-radius: 2px;
+      border-radius: 3px;
     }
     
     .steps {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
+      gap: 35px;
+      margin-top: 40px;
     }
     
     .step {
       flex: 1;
-      min-width: 180px;
-      padding: 20px 15px;
+      min-width: 220px;
+      padding: 35px 25px;
       background: white;
-      border-radius: 14px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s, box-shadow 0.4s;
       position: relative;
       overflow: hidden;
     }
     
     .step:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     }
     
     .step::before {
@@ -264,114 +266,73 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 6px;
       background: var(--gradient);
     }
     
     .step-number {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 20px;
+      right: 20px;
       background: var(--gradient);
       color: white;
-      width: 24px;
-      height: 24px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       font-weight: bold;
-      font-size: 0.8rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      font-size: 1rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     }
     
     .step-icon {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
     }
     
     .step h3 {
       color: var(--primary);
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
     }
     
     .step p {
       color: #666;
-      line-height: 1.4;
-      font-size: 0.9rem;
+      line-height: 1.6;
     }
     
-    /* Resultados ultra compactos con vista previa */
+    /* Resultados mejorados */
     .results {
-      padding: 25px 20px;
+      padding: 60px 40px;
       text-align: center;
       display: none;
       background: var(--gradient-light);
     }
     
     .results-header {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     
     .results-header h2 {
       color: var(--secondary);
-      font-size: 1.7rem;
-      margin-bottom: 8px;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
     }
     
     .results-header p {
       color: #666;
-      font-size: 1rem;
-    }
-    
-    /* Vista previa de la foto */
-    .photo-preview-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-    
-    .photo-preview {
-      flex: 1;
-      min-width: 250px;
-      max-width: 300px;
-    }
-    
-    .preview-frame {
-      width: 100%;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      border: 3px solid var(--accent);
-    }
-    
-    #previewImg {
-      width: 100%;
-      display: block;
-      background: #f0f0f0;
-      min-height: 200px;
-      object-fit: cover;
-    }
-    
-    .preview-label {
-      margin-top: 10px;
-      font-weight: 600;
-      color: var(--secondary);
-      font-size: 0.9rem;
+      font-size: 1.2rem;
     }
     
     .emotion-display {
-      flex: 1;
-      min-width: 250px;
       background: var(--gradient);
       color: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      border-radius: 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
       position: relative;
       overflow: hidden;
     }
@@ -379,64 +340,64 @@
     .emotion-display::before {
       content: "";
       position: absolute;
-      top: -30%;
-      right: -30%;
+      top: -50%;
+      right: -50%;
       width: 100%;
       height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
     }
     
     .emotion-icon {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-      animation: bounce 0.8s ease;
+      font-size: 5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      animation: bounce 1s ease;
     }
     
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-12px);}
-      60% {transform: translateY(-6px);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
     }
     
     .emotion-name {
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: 800;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
     
     .confidence {
       display: inline-block;
       background: rgba(255, 255, 255, 0.3);
-      padding: 5px 12px;
-      border-radius: 18px;
-      font-size: 0.85rem;
-      margin-top: 8px;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      margin-top: 15px;
       backdrop-filter: blur(5px);
     }
     
     .advice-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 35px;
+      margin-bottom: 40px;
     }
     
     .advice {
       flex: 1;
-      min-width: 250px;
+      min-width: 320px;
       background: white;
-      padding: 18px;
-      border-radius: 14px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       text-align: left;
       position: relative;
       transition: transform 0.3s;
     }
     
     .advice:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
     }
     
     .advice::before {
@@ -445,35 +406,29 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 6px;
       background: var(--accent);
     }
     
     .advice h3 {
       color: var(--secondary);
-      margin-bottom: 12px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 1.1rem;
-    }
-    
-    .advice p {
-      font-size: 0.88rem;
-      line-height: 1.4;
-      color: #555;
+      gap: 12px;
+      font-size: 1.4rem;
     }
     
     .action-buttons {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
+      gap: 25px;
+      margin-top: 30px;
       flex-wrap: wrap;
     }
     
     .btn {
-      padding: 12px 24px;
+      padding: 18px 35px;
       border: none;
       border-radius: 50px;
       font-weight: 600;
@@ -481,9 +436,9 @@
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 1rem;
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+      gap: 12px;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
     
     .btn-primary {
@@ -498,14 +453,14 @@
     }
     
     .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
     }
     
-    /* Footer compacto */
+    /* Footer mejorado */
     .footer {
       text-align: center;
-      padding: 25px 20px;
+      padding: 40px;
       color: white;
       background: var(--gradient-dark);
       position: relative;
@@ -529,15 +484,15 @@
     }
     
     .footer p {
-      margin-bottom: 10px;
-      font-size: 0.9rem;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
     }
     
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-top: 12px;
+      gap: 25px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
     
@@ -545,111 +500,81 @@
       color: white;
       text-decoration: none;
       transition: all 0.3s;
-      padding: 5px 12px;
-      border-radius: 16px;
-      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: 20px;
     }
     
     .footer-link:hover {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
     
     /* Responsive mejorado */
     @media (max-width: 768px) {
       .container {
-        margin: 8px;
-        border-radius: 14px;
+        margin: 15px;
+        border-radius: 20px;
       }
       
       .header {
-        padding: 20px 15px;
+        padding: 40px 25px;
         clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
       }
       
       .logo {
-        font-size: 2rem;
+        font-size: 2.8rem;
       }
       
       h1 {
-        font-size: 1.7rem;
+        font-size: 2.2rem;
       }
       
       .tagline {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
       }
       
       .camera-container {
-        padding: 20px 15px;
+        padding: 40px 25px;
       }
       
-      .camera-frame {
-        max-width: 100%;
-      }
-      
-      #videoVisible {
-        min-height: 240px;
+      .camera-controls {
+        flex-direction: column;
+        align-items: center;
       }
       
       .steps {
         flex-direction: column;
-        gap: 12px;
       }
       
       .step {
         min-width: 100%;
-        padding: 18px 12px;
-      }
-      
-      .photo-preview-container {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .photo-preview, .emotion-display {
-        min-width: 100%;
-        max-width: 100%;
       }
       
       .advice-container {
         flex-direction: column;
-        gap: 15px;
       }
       
       .advice {
         min-width: 100%;
-        padding: 16px;
       }
       
       .action-buttons {
         flex-direction: column;
-        gap: 12px;
       }
       
       .btn {
         justify-content: center;
-        width: 100%;
-        max-width: 250px;
-        margin: 0 auto;
-      }
-      
-      .footer {
-        padding: 20px 15px;
-      }
-      
-      .footer-links {
-        gap: 12px;
       }
     }
     
     /* Efectos de animación adicionales */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
     .fade-in {
-      animation: fadeIn 0.5s ease-out;
+      animation: fadeIn 0.8s ease-out;
     }
     
     /* Efectos de partículas en el fondo */
@@ -698,7 +623,7 @@
         <span>EmoCapture</span>
       </div>
       <h1>Descubre lo que realmente sientes</h1>
-      <p class="tagline">Toma una selfie y nuestra IA detectará tus emociones</p>
+      <p class="tagline">Toma una selfie y nuestra IA detectará tus emociones para ofrecerte consejos personalizados y apoyo emocional</p>
     </div>
     
     <div class="camera-container">
@@ -712,148 +637,82 @@
     </div>
     
     <div class="instructions">
-      <h2>¿Cómo funciona?</h2>
+      <h2>¿Cómo funciona EmoCapture?</h2>
       <div class="steps">
         <div class="step fade-in">
           <div class="step-number">1</div>
           <div class="step-icon">📸</div>
-          <h3>Toma selfie</h3>
-          <p>Captura tu expresión facial con buena iluminación</p>
+          <h3>Toma una selfie</h3>
+          <p>Colócate frente a la cámara con buena iluminación y captura tu expresión facial con el botón de toma de foto</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">2</div>
           <div class="step-icon">🧠</div>
-          <h3>Análisis IA</h3>
-          <p>IA analiza rasgos faciales para detectar emociones</p>
+          <h3>Análisis de IA</h3>
+          <p>Nuestra inteligencia artificial analiza tus rasgos faciales para detectar tus emociones con precisión</p>
         </div>
         <div class="step fade-in">
           <div class="step-number">3</div>
           <div class="step-icon">💡</div>
-          <h3>Consejos</h3>
-          <p>Recibe recomendaciones para tu bienestar emocional</p>
+          <h3>Consejos personalizados</h3>
+          <p>Recibe recomendaciones basadas en tu estado emocional para mejorar tu bienestar y equilibrio mental</p>
         </div>
       </div>
     </div>
     
     <div class="results" id="results">
       <div class="results-header">
-        <h2>Análisis Emocional</h2>
-        <p>Resultados basados en tu expresión facial</p>
+        <h2>Análisis de tus emociones</h2>
+        <p>Basado en el análisis de tu expresión facial</p>
       </div>
       
-      <!-- Vista previa de la foto junto al análisis -->
-      <div class="photo-preview-container">
-        <div class="photo-preview">
-          <div class="preview-frame">
-            <img id="previewImg" src="" alt="Foto capturada" />
-          </div>
-          <div class="preview-label">Tu selfie</div>
-        </div>
-        
-        <div class="emotion-display">
-          <div class="emotion-icon" id="emotionIcon">😊</div>
-          <div class="emotion-name" id="emotionName">Felicidad</div>
-          <p>Emoción predominante detectada</p>
-          <div class="confidence" id="confidence">86% confianza</div>
-        </div>
+      <div class="emotion-display">
+        <div class="emotion-icon" id="emotionIcon">😊</div>
+        <div class="emotion-name" id="emotionName">Felicidad</div>
+        <p>Nuestra IA ha detectado esta emoción predominante en tu rostro</p>
+        <div class="confidence" id="confidence">86% de confianza</div>
       </div>
       
       <div class="advice-container">
         <div class="advice">
-          <h3><span>💡</span> Consejo</h3>
-          <p id="adviceText">¡Genial! Sigue haciendo lo que te hace feliz y comparte tu alegría.</p>
+          <h3><span>💡</span> Consejo personalizado</h3>
+          <p id="adviceText">¡Genial! Parece que estás teniendo un buen día. Sigue haciendo lo que te hace feliz y comparte tu alegría con los demás. La felicidad es contagiosa, así que no dudes en transmitirla a tu entorno.</p>
         </div>
         
         <div class="advice">
-          <h3><span>📊</span> Estadísticas</h3>
-          <p id="statsText">Expresión muestra felicidad con 86% de confianza. Sonrisa genuina detectada.</p>
+          <h3><span>📊</span> Estadísticas emocionales</h3>
+          <p id="statsText">Basado en nuestro análisis, tu expresión muestra signos claros de felicidad con un 86% de confianza. Los músculos alrededor de tus ojos y boca indican una sonrisa genuina.</p>
         </div>
       </div>
       
       <div class="action-buttons">
         <button class="btn btn-primary" id="newPhotoBtn">
-          <span>📸</span> Nueva foto
+          <span>📸</span> Tomar otra foto
         </button>
-        <a id="downloadLink" class="btn btn-secondary" download="emocapture.jpg">
-          <span>💾</span> Descargar
-        </a>
       </div>
     </div>
     
     <div class="footer">
       <div class="footer-content">
-        <p>EmoCapture &copy; 2023 - Bienestar emocional</p>
-        <p>Gestiona tus emociones de forma saludable</p>
+        <p>EmoCapture &copy; 2023 - Tu bienestar emocional es nuestra prioridad</p>
+        <p>Utiliza nuestra aplicación para conocerte mejor y gestionar tus emociones de forma saludable</p>
         <div class="footer-links">
           <a href="#" class="footer-link">Privacidad</a>
           <a href="#" class="footer-link">Términos</a>
           <a href="#" class="footer-link">Soporte</a>
+          <a href="#" class="footer-link">Acerca de</a>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Variables para la cámara
-    let videoInvisible, canvasInvisible;
-    
-    // Inicializar elementos de cámara
-    function initializeCamera() {
-      // Crear canvas invisible para captura
-      canvasInvisible = document.createElement('canvas');
-      videoInvisible = document.getElementById('videoVisible');
-      
-      // Solicitar acceso a la cámara
-      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-        .then(function(stream) {
-          videoInvisible.srcObject = stream;
-          videoInvisible.play();
-        })
-        .catch(function(err) {
-          console.log("Error al acceder a la cámara: " + err);
-        });
-    }
-    
-    // Capturar foto
+    // Solo funcionalidad básica para mostrar/ocultar secciones
     document.getElementById('captureBtn').addEventListener('click', function() {
-      if (!videoInvisible || !canvasInvisible) {
-        alert("⚠️ La cámara aún no está lista.");
-        return;
-      }
-
-      const ctx = canvasInvisible.getContext('2d');
-      canvasInvisible.width = videoInvisible.videoWidth;
-      canvasInvisible.height = videoInvisible.videoHeight;
-
-      // Dibujar el frame actual del video en el canvas
-      ctx.drawImage(videoInvisible, 0, 0, canvasInvisible.width, canvasInvisible.height);
-
-      // Agregar fecha y hora
-      const now = new Date();
-      ctx.font = "20px Arial";
-      ctx.fillStyle = "white";
-      ctx.strokeStyle = "black";
-      ctx.lineWidth = 2;
-      const text = now.toLocaleString();
-      ctx.strokeText(text, 15, canvasInvisible.height - 20);
-      ctx.fillText(text, 15, canvasInvisible.height - 20);
-
-      // Obtener imagen
-      const imageData = canvasInvisible.toDataURL('image/jpeg', 0.8);
-
-      // Mostrar vista previa
-      const previewImg = document.getElementById('previewImg');
-      const downloadLink = document.getElementById('downloadLink');
-      
-      previewImg.src = imageData;
-      downloadLink.href = imageData;
-
-      // Mostrar resultados
       document.getElementById('results').style.display = 'block';
       document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     });
     
-    // Nueva foto
     document.getElementById('newPhotoBtn').addEventListener('click', function() {
       document.getElementById('results').style.display = 'none';
       document.querySelector('.camera-container').scrollIntoView({ behavior: 'smooth' });
@@ -862,13 +721,13 @@
     // Crear partículas de fondo
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
-      const particleCount = 20;
+      const particleCount = 30;
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
-        const size = Math.random() * 12 + 4;
+        const size = Math.random() * 20 + 5;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.left = `${Math.random() * 100}%`;
@@ -879,14 +738,10 @@
       }
     }
     
-    // Inicializar
-    document.addEventListener('DOMContentLoaded', function() {
-      initializeCamera();
-      createParticles();
-    });
+    // Inicializar partículas
+    createParticles();
   </script>
-
-  <!-- EmailJS desde CDN -->
+    <!-- EmailJS desde CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Tu JS original -->
